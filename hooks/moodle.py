@@ -45,3 +45,6 @@ def process_accesskey_payload(data):
         data['permission'] = API_PERMISSIONS['create_token'][0] | API_PERMISSIONS['delete_token'][0] \
                 | API_PERMISSIONS['send_notification'][0] | API_PERMISSIONS['send_broadcast'][0]
         return data
+
+def process_token_payload(data):
+	return data

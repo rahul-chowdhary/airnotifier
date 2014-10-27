@@ -251,14 +251,22 @@ class TokenV1Handler(APIBaseHandler):
             return
 
         device = self.get_argument('device', DEVICE_TYPE_IOS).lower()
-        if device == DEVICE_TYPE_IOS:
+	    if device == DEVICE_TYPE_IOS:
             if len(devicetoken) != 64:
-                self.send_response(BAD_REQUEST, dict(error='Invalid token'))
-                return
-            try:
-                binascii.unhexlify(devicetoken)
-            except Exception as ex:
-                self.send_response(BAD_REQUEST, dict(error='Invalid token'))
+                # hack until we resolve some bugs at the moodle side
+                if len(devicetoken) > 64:
+                    device = DEVICE_TYPE_ANDROID
+                else:
+                    self.send_response(BAD_REQUEST, dict(error='Invalid token'))
+                    return
+            else:
+                try:
+                    binascii.unhexlify(devicetoken)
+                except Exception, ex:
+                    self.send_response(BAD_REQUEST, dict(error='Invalid token'))
+        else:
+            # if it's not ios then we force android type device here
+            device = DEVICE_TYPE_ANDROID
 
         channel = self.get_argument('channel', 'default')
 

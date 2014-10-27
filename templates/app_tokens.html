@@ -26,8 +26,8 @@
         {% for token in tokens %}
             <tr>
                 <td>{{ token['device'] }}</td>
-                <td><code>{{ token['token'][:64] }}</code></td>
-                <td>
+		<td><code title='{{ token['token'] }}'>{{ token['token'][:32] }}..</code></td>
+		<td>
                     <a class="btn btn-danger" href="/applications/{{app['shortname']}}/tokens?delete={{token['_id']}}"><i class="icon-trash icon-white"></i> {{ _('Delete') }}</a>
                 </td>
             </tr>

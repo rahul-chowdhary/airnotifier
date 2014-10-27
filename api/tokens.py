@@ -66,6 +66,15 @@ class TokenV2Handler(APIBaseHandler):
             return
         data = self.json_decode(self.request.body)
 
+	processor = data.get('processor', None)
+	if processor:
+                try:
+                    proc = import_module('hooks.' + processor)
+                    data = proc.process_token_payload(data)
+                except Exception, ex:
+                    self.send_response(FORBIDDEN, dict(error=str(ex)))
+                    return
+
         device = data.get('device', DEVICE_TYPE_IOS).lower()
         channel = data.get('channel', 'default')
         devicetoken = data.get('token', '')
