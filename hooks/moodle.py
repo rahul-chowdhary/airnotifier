@@ -11,6 +11,12 @@ def process_pushnotification_payload(data):
     subject = extra.get('subject', None)
     fullmessage = extra.get('fullmessage', None)
 
+    data['gcm'] = {
+	'data': {
+		'title': 'Moodle Mobile'
+		}
+	}
+
     if 'alert' not in data:
         data['alert'] = fullmessage
 
