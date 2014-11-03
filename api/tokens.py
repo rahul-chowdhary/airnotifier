@@ -36,6 +36,7 @@ from routes import route
 from api import APIBaseHandler, EntityBuilder
 from constants import DEVICE_TYPE_IOS
 import binascii
+from importlib import import_module
 
 @route(r"/api/v2/tokens/([^/]+)")
 class TokenV2HandlerGet(APIBaseHandler):
