@@ -5,20 +5,33 @@ HUBURL = "http://moodle.net/local/sitecheck/check.php"
 
 def process_pushnotification_payload(data):
     extra = data.get('extra', {})
-    userfrom = extra.get('userfrom', None)
+    userfrom = extra.get('userfromfullname', None)
+    site = extra.get('site', None)
     timecreated = extra.get('timecreated', None)
-    userto = extra.get('userto', None)
-    subject = extra.get('subject', None)
-    fullmessage = extra.get('fullmessage', None)
+    message = extra.get('smallmessage', None)
+    notif = extra.get('notification', None)
 
     data['gcm'] = {
 	'data': {
-		'title': 'Moodle Mobile'
-		}
+		'title': 'Moodle Mobile',
+		'site': site, 
+		'userfrom': userfrom,
+		'notif': notif
+                }
 	}
 
+    data['apns'] = {
+        'custom': {
+                'title': 'Moodle Mobile',
+                'site': site,
+                'userfrom': userfrom,
+		'notif': notif
+                }
+        }
+
+
     if 'alert' not in data:
-        data['alert'] = fullmessage
+        data['alert'] = message
 
     if not 'wns' in extra:
         data['extra']['wns'] = {

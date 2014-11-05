@@ -351,6 +351,7 @@ class NotificationHandler(APIBaseHandler):
             try:
                 gcm = self.gcmconnections[self.app['shortname']][0]
                 data = dict({'message': alert}.items() + customparams.items())
+                data['title'] = 'Moodle Mobile'
                 response = gcm.send([self.token], data=data, collapse_key=collapse_key, ttl=3600)
                 responsedata = response.json()
                 if responsedata['failure'] == 0:
