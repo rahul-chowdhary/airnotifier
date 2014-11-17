@@ -11,6 +11,9 @@ def process_pushnotification_payload(data):
     message = extra.get('smallmessage', None)
     notif = extra.get('notification', None)
 
+    if not message:
+	message = extra.get('fullmessage', None)
+
     data['gcm'] = {
 	'data': {
 		'title': 'Moodle Mobile',
