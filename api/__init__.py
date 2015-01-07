@@ -556,7 +556,7 @@ class AccessKeysV1Handler(APIBaseHandler):
         self.send_response(OK, dict(accesskey=key['key']))
 
     def verify_request(self):
-        huburl = "http://moodle.net/local/sitecheck/check.php"
+        huburl = "https://moodle.net/local/sitecheck/check.php"
         mdlurl = self.get_argument('url', '')
         mdlsiteid = self.get_argument('siteid', '')
         params = {'siteid': mdlsiteid, 'url': mdlurl}

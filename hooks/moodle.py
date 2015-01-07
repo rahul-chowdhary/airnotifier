@@ -1,7 +1,7 @@
 import requests
 from api import API_PERMISSIONS
 
-HUBURL = "http://moodle.net/local/sitecheck/check.php"
+HUBURL = "https://moodle.net/local/sitecheck/check.php"
 
 def process_pushnotification_payload(data):
     extra = data.get('extra', {})
@@ -17,7 +17,7 @@ def process_pushnotification_payload(data):
     data['gcm'] = {
 	'data': {
 		'title': 'Moodle Mobile',
-		'site': site, 
+		'site': site,
 		'userfrom': userfrom,
 		'notif': notif
                 }
