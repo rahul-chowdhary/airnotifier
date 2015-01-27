@@ -10,13 +10,17 @@ def process_pushnotification_payload(data):
     timecreated = extra.get('timecreated', None)
     message = extra.get('smallmessage', None)
     notif = extra.get('notification', None)
+    title = extra.get('sitefullname', None)
 
     if not message:
 	message = extra.get('fullmessage', None)
 
+    if not title:
+        title = 'Notification'
+
     data['gcm'] = {
 	'data': {
-		'title': 'Notification',
+		'title': title,
 		'site': site,
 		'userfrom': userfrom,
 		'notif': notif
@@ -25,7 +29,7 @@ def process_pushnotification_payload(data):
 
     data['apns'] = {
         'custom': {
-                'title': 'Notification',
+                'title': title,
                 'site': site,
                 'userfrom': userfrom,
 		'notif': notif
