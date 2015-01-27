@@ -16,7 +16,7 @@ def process_pushnotification_payload(data):
 
     data['gcm'] = {
 	'data': {
-		'title': 'Moodle Mobile',
+		'title': 'Notification',
 		'site': site,
 		'userfrom': userfrom,
 		'notif': notif
@@ -25,7 +25,7 @@ def process_pushnotification_payload(data):
 
     data['apns'] = {
         'custom': {
-                'title': 'Moodle Mobile',
+                'title': 'Notification',
                 'site': site,
                 'userfrom': userfrom,
 		'notif': notif
