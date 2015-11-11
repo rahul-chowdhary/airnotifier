@@ -251,7 +251,7 @@ class TokenV1Handler(APIBaseHandler):
             return
 
         device = self.get_argument('device', DEVICE_TYPE_IOS).lower()
-	    if device == DEVICE_TYPE_IOS:
+        if device == DEVICE_TYPE_IOS:
             if len(devicetoken) != 64:
                 # hack until we resolve some bugs at the moodle side
                 if len(devicetoken) > 64:
