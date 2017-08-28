@@ -191,7 +191,8 @@ class AirNotifierApp(tornado.web.Application):
             import ssl
             try:
                 ssl_ctx = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-                ssl_ctx.load_cert_chain(options.httpscertfile, options.httpskeyfile)
+                #ssl_ctx.load_cert_chain(options.httpscertfile, options.httpskeyfile)
+                ssl_ctx.load_cert_chain(os.path.join("/home/ubuntu/", "airtest.support.learningbrothers.com.crt"),os.path.join("/home/ubuntu/", "airtest.support.learningbrothers.com.key"))
             except IOError:
                 print("Invalid path to SSL certificate and private key")
                 raise
